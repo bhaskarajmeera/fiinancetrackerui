@@ -1,16 +1,24 @@
 
 import './App.css'
 import Button from 'react-bootstrap/Button';
+import { Routes,Route } from "react-router-dom";
 import { ToastContainer,toast } from 'react-toastify';
+import Login from './pages/Login';
+
+
 
 function App() {
  
 
   return (
-    <><h1>hellow</h1>
-    <Button variant="primary">Primary</Button>
+    <>
+    <Routes>
+    <Route path="/" element={<Login/>}/>
+    
+    </Routes>
     <ToastContainer />
     </>
+    
   )
 }
 
