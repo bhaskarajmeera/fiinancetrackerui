@@ -4,6 +4,8 @@ import Container from'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col'
 import FinancialTips from '../components/FinancialTips.jsx';
+import SignUpForm from '../components/SignUpForm.jsx';
+
 
 
 
@@ -17,7 +19,7 @@ const SignUp =() => {
     <FinancialTips/>{""}
     </Col>
     <Col>
-    form here
+    <SignUpForm/>{""}
     </Col>
 
     </Row>
