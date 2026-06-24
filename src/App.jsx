@@ -1,9 +1,9 @@
 
 import './App.css'
-import Button from 'react-bootstrap/Button';
 import { Routes,Route } from "react-router-dom";
 import { ToastContainer,toast } from 'react-toastify';
-import Login from './pages/Login';
+import Login from './pages/Login.jsx';
+import SignUp from './pages/SignUp.jsx';
 
 
 
@@ -11,14 +11,14 @@ function App() {
  
 
   return (
-    <>
-    <Routes>
-    <Route path="/" element={<Login/>}/>
-    
-    </Routes>
-    <ToastContainer />
-    </>
-    
+    <div className="wrapper">
+        <Routes>
+        <Route path="/" element={<Login/>}/>
+        <Route path="/signup" element={<SignUp/>}/>
+        </Routes>
+        <ToastContainer />
+        
+    </div>
   )
 }
 
