@@ -1,28 +1,66 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { CustomInput } from './CustomInput.jsx';
+import { toast } from "react-toastify";
 
 export const SignUpForm = () => {
+const [form,setForm] =useState({});
+
+  const fields =[
+  {   label:"Name",
+      placeholder:"john smith",
+      required:true,
+      type:"text",
+      name:"name"
+  },
+  {   label:"Email",
+      placeholder:"john@gmail.com",
+      required:true,
+      type:"email",
+      name:"email"
+  },
+  {   label:"pasword",
+      placeholder:"***********",
+      required:true,
+      type:"password",
+      name:"password"
+  }, 
+   {label:"confirm pasword",
+      placeholder:"***********",
+      required:true,
+      type:"password",
+      name:"confirm password"
+  },
+  
+]
+
+const handleOnChange=(e)=>{
+  const {name,value}=e.target;
+  console.log(name,value);
+  setForm({...Form,[name]:value,})
+}
+
+const handleOnSubmit=(e)=>{
+  e.preventDefault();
+  const {confirmPassword,...rest}=form;
+  if(confirmPassword!==rest.password){return toast.error("password do not matched")}
+  console.log(form);
+}
   return (
-    <Form className='p-4 border rounded'>
+    <div className='p-4 border rounded'>
         <h4 className="mb-3">Sign Up Now!</h4>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Email address</Form.Label>
-        <Form.Control type="email" placeholder="Enter email" />
+        <Form >
+        {fields.map((input)=><CustomInput key={input.name}{...input}onChange={handleOnChange}/>)
 
-      </Form.Group>
-
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control type="password" placeholder="Password" />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicCheckbox">
-        <Form.Check type="checkbox" label="Check me out" />
-      </Form.Group>
+        }
       <Button variant="primary" type="submit">
         Submit
       </Button>
     </Form>
+      
+    </div>
+    
   )
 }
 export default SignUpForm;
