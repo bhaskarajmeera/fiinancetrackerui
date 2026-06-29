@@ -19,8 +19,8 @@ export const Header = () => {
             <Nav.Link as={Link} to="/login">Login</Nav.Link>
             
             <Nav.Link as={Link} to="/signup">Sign Up</Nav.Link>
-            <Nav.Link as={Link} to="/signup">
-            <MdExitToApp />
+            <Nav.Link as={Link} to="/logout">
+            <MdExitToApp />LogOut
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
