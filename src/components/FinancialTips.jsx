@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { GiTakeMyMoney } from "react-icons/gi";
 const financialTps=[
   {
     "tip": "Track your spending daily.",
@@ -63,6 +64,7 @@ useEffect(()=>{
 },[])
   return (
     <div>
+      <GiTakeMyMoney  className='text-success' style={{fontSize:"10rem"}}/>
     <h4>
         {tip}
         </h4>  
