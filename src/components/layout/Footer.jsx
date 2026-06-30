@@ -9,7 +9,7 @@ export const Footer = () => {
    <Container>
         <Row className="text-center text-md-start">
           <Col md={4} className="mb-3">
-            <h5>Business Expense</h5>
+            <h5>Finance Tracker</h5>
             <p className="small">
               Track your expenses, manage your budget, and stay financially
               organised.
@@ -28,7 +28,7 @@ export const Footer = () => {
           <Col md={4} className="mb-3">
             <h5>Contact</h5>
             <p className="small mb-1">Email: support@businessexpense.com</p>
-            <p className="small mb-0">© {new Date().getFullYear()} Business Expense</p>
+            <p className="small mb-0">© {new Date().getFullYear()} Finance Tracker</p>
           </Col>
         </Row>
       </Container>

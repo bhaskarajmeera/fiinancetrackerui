@@ -9,7 +9,7 @@ export const Header = () => {
     <Navbar bg="dark" variant="dark" expand="md" sticky="top">
     <Container fluid>
         <Navbar.Brand as={Link} to="/">
-          BusinessExpense
+          Finance Tracker
         </Navbar.Brand>
 
        {/*  <Navbar.Toggle aria-controls="main-navbar" /> */}

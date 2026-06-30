@@ -24,14 +24,8 @@ export const LogInForm = () => {
       const handleOnSubmit = async (e) => {
         e.preventDefault();
     
-        const { confirmPassword, ...rest } = form;
+      console.log(form);
     
-        if (confirmPassword !== rest.password) {
-          return toast.error("Passwords do not match");
-        }
-    
-        const { status, message } = await postNewUser(rest);
-        toast[status](message);
       };
   return (
     <div>

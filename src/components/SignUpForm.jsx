@@ -1,24 +1,25 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { CustomInput } from './CustomInput.jsx';
 import { toast } from "react-toastify";
 import { postNewUser } from '../../helpers/axiosHelpers.js';
-
+import useForm  from "../components/hooks/useForm.js";
+  const initialState = {
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  }
 export const SignUpForm = () => {
-  const [form, setForm] = useState({});
+  const {form, setForm,handleOnChange} = useForm({});
 
   const fields = [
-    { label:"Name", placeholder:"john smith", required:true, type:"text", name:"name" },
-    { label:"Email", placeholder:"john@gmail.com", required:true, type:"email", name:"email" },
-    { label:"Password", placeholder:"***********", required:true, type:"password", name:"password" },
-    { label:"Confirm Password", placeholder:"***********", required:true, type:"password", name:"confirmPassword" },
+    { label:"Name", placeholder:"john smith", required:true, type:"text", name:"name",value: form.name },
+    { label:"Email", placeholder:"john@gmail.com", required:true, type:"email", name:"email",value: form.email  },
+    { label:"Password", placeholder:"***********", required:true, type:"password", name:"password", value: form.password  },
+    { label:"Confirm Password", placeholder:"***********", required:true, type:"password", name:"confirmPassword", value: form.confirmPassword  },
   ];
-
-  const handleOnChange = (e) => {
-    const { name, value } = e.target;
-    setForm({ ...form, [name]: value });
-  };
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
@@ -31,6 +32,7 @@ export const SignUpForm = () => {
 
     const { status, message } = await postNewUser(rest);
     toast[status](message);
+    status === "success" && setForm(initialState)
   };
 
   return (
