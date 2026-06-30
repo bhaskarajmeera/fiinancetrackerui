@@ -14,7 +14,7 @@ const Login = () => {
       <Row >
       
       <Col md={6} className='bg-dark p-5 rounded'>
-      <h4 clas>Sign In</h4>
+      <h4 >Sign In</h4>
       <LogInForm/>
       </Col>
       <Col md={6} >

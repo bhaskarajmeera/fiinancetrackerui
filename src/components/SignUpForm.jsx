@@ -12,7 +12,7 @@ import useForm  from "../components/hooks/useForm.js";
     confirmPassword: "",
   }
 export const SignUpForm = () => {
-  const {form, setForm,handleOnChange} = useForm({});
+  const {form, setForm, handleOnChange} = useForm(initialState);
 
   const fields = [
     { label:"Name", placeholder:"john smith", required:true, type:"text", name:"name",value: form.name },

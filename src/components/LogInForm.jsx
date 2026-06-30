@@ -1,26 +1,24 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { CustomInput } from './CustomInput.jsx';
 import { toast } from "react-toastify";
 import { postNewUser } from '../../helpers/axiosHelpers.js';
+import useForm from './hooks/useForm.js';
 
-
+const initialState = {
+  email: "",
+  password: "",
+}
 
 export const LogInForm = () => {
+  const {form, handleOnChange} = useForm(initialState);
 
-  const [form, setForm] = useState({});
-  
     const fields = [
-      { label:"Email", placeholder:"john@gmail.com", required:true, type:"email", name:"email" },
-      { label:"Password", placeholder:"***********", required:true, type:"password", name:"password" },
+      { label:"Email", placeholder:"john@gmail.com", required:true, type:"email", name:"email",value: form.email },
+      { label:"Password", placeholder:"***********", required:true, type:"password", name:"password", value:form.password },
     ];
 
-    const handleOnChange = (e) => {
-        const { name, value } = e.target;
-        setForm({ ...form, [name]: value });
-      };
-    
       const handleOnSubmit = async (e) => {
         e.preventDefault();
     
