@@ -1,5 +1,16 @@
 .wrapper{
     min-height: 100vh;
+    
     background: rgb(111, 101, 101);
     color: white;
 }
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width:100%;
+    padding-top: 1rem;
+    
+    
+}
+

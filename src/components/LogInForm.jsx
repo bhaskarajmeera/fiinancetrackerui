@@ -2,16 +2,15 @@ import React from 'react'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { CustomInput } from './CustomInput.jsx';
-import { toast } from "react-toastify";
-import { postNewUser } from '../../helpers/axiosHelpers.js';
 import useForm from './hooks/useForm.js';
-
+import { loginUser } from '../../helpers/axiosHelpers.js';
+import { toast } from "react-toastify";
 const initialState = {
   email: "",
   password: "",
 }
 
-export const LogInForm = () => {
+ export const LogInForm = () => {
   const {form, handleOnChange} = useForm(initialState);
 
     const fields = [
@@ -21,8 +20,9 @@ export const LogInForm = () => {
 
       const handleOnSubmit = async (e) => {
         e.preventDefault();
-    
-      console.log(form);
+      const { status,message,user,accessJWT } = await loginUser(form);
+      toast[status](message)
+      console.log(user,accessJWT);
     
       };
   return (

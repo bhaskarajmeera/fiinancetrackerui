@@ -32,3 +32,14 @@ export const postNewUser =(data) =>{
     }
     return apiProcessor(Obj);
 }
+
+/* login user            */
+
+export const loginUser=(data) =>{
+    const Obj ={
+        method:"post",
+        url: rootApiEp + "/users/login",
+        data,
+    }
+    return apiProcessor(Obj);
+}

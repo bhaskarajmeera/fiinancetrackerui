@@ -3,7 +3,7 @@ import { Footer } from '../layout/Footer.jsx'
 import { Header } from '../layout/Header.jsx'
 import { Outlet } from "react-router-dom"
 
-export const DefaultLayout = () => {
+const DefaultLayout = () => {
   return (
     <div>
         {/* nav bar */}
@@ -17,3 +17,5 @@ export const DefaultLayout = () => {
     </div>
   )
 }
+
+export default DefaultLayout;

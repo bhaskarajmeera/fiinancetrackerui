@@ -1,18 +1,15 @@
-import React from 'react'
+
 import Container from'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col'
 import { LogInForm } from '../components/LogInForm.jsx';
-
 import { BsGraphDown } from "react-icons/bs";
 import { BsGraphUp } from "react-icons/bs";
 
 const Login = () => {
   return (
     <Container className='p-5' >
-      
       <Row >
-      
       <Col md={6} className='bg-dark p-5 rounded'>
       <h4 >Sign In</h4>
       <LogInForm/>
@@ -25,9 +22,7 @@ const Login = () => {
         <BsGraphUp />  Inrease your income
       </div>
       </Col>
-
       </Row>
-
     </Container>
     
   )
