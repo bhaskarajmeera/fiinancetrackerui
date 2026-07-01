@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { MdExitToApp } from "react-icons/md";
 import { MdDashboardCustomize } from "react-icons/md";
 import { GrTransaction } from "react-icons/gr";
+import { UserContext } from "../../main";
 
 
 export const Header = () => {
+
+  const useUser = () => useContext(UserContext)
+  const data = useUser()
+  console.log(data)
   return (
     <Navbar bg="dark" variant="dark" expand="md" sticky="top">
     <Container fluid>
