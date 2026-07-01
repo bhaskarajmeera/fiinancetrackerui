@@ -5,8 +5,11 @@ import Col from 'react-bootstrap/Col'
 import { LogInForm } from '../components/LogInForm.jsx';
 import { BsGraphDown } from "react-icons/bs";
 import { BsGraphUp } from "react-icons/bs";
+/* import { useUser } from '../context/UserContext.jsx'; */
 
 const Login = () => {
+ /* const {user,setUser} = useUser();
+ console.log(user,setUser); */
   return (
     <Container className='p-5' >
       <Row >

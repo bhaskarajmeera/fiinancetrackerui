@@ -1,10 +1,10 @@
 import { Nav } from "react-bootstrap";
 import { Navigate } from "react-router-dom";
+import { useUser } from "../context/UserContext";
 
-export const Auth = ({children}) => {
-
-   const isLoggedin = false
-  return isLoggedin ? children :<Navigate to="/" replace />
+export const Auth = ({ children }) => {
+const {user} = useUser();
+  return user?._id ? children :<Navigate to="/" replace />
 }
 
 export default Auth;

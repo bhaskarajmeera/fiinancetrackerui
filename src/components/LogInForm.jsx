@@ -1,17 +1,27 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { CustomInput } from './CustomInput.jsx';
 import useForm from './hooks/useForm.js';
 import { loginUser } from '../../helpers/axiosHelpers.js';
 import { toast } from "react-toastify";
+import { useUser } from '../context/UserContext.jsx';
+import { useNavigate } from 'react-router-dom';
 const initialState = {
   email: "",
   password: "",
 }
 
  export const LogInForm = () => {
+  const navigate = useNavigate();
+  const {user,setUser} = useUser();
+ console.log(user,setUser);
   const {form, handleOnChange} = useForm(initialState);
+  
+  useEffect(()=>{
+    user?._id && navigate("/dashboard")
+
+  },[user?._id,navigate])
 
     const fields = [
       { label:"Email", placeholder:"john@gmail.com", required:true, type:"email", name:"email",value: form.email },
@@ -23,6 +33,7 @@ const initialState = {
       const { status,message,user,accessJWT } = await loginUser(form);
       toast[status](message)
       console.log(user,accessJWT);
+      setUser(user);
     
       };
   return (
