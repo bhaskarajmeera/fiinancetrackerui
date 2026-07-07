@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { CustomInput } from './CustomInput.jsx';
@@ -34,6 +34,7 @@ const initialState = {
       toast[status](message)
       console.log(user,accessJWT);
       setUser(user);
+      localStorage.setItem("accessJWT",accessJWT)
     
       };
   return (

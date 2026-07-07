@@ -1,18 +1,24 @@
 
-import { Navbar, Nav, Container } from "react-bootstrap";
+import { Navbar, Nav, Container, Alert } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { MdExitToApp } from "react-icons/md";
 import { MdDashboardCustomize } from "react-icons/md";
 import { GrTransaction } from "react-icons/gr";
-/* import { useUser } from "../../context/UserContext"; */
+ import { useUser } from "../../context/UserContext";
 
 
-
+ const {setUser} = useUser() 
 
 export const Header = () => {
+const handleOnLogoOut= ()=>{
+  localStorage.removeItem("accessJWT")
+  Alert("")
+  setUser({})
+
+}
 
   
-  /* const data = useUser() */
+ 
 
   return (
     <Navbar bg="dark" variant="dark" expand="md" sticky="top">
@@ -27,8 +33,8 @@ export const Header = () => {
             <Nav.Link as={Link} to="/transaction"> <GrTransaction />  Transaction</Nav.Link>
             <Nav.Link as={Link} to="/login">Login</Nav.Link>
             <Nav.Link as={Link} to="/signup">Sign Up</Nav.Link>
-            <Nav.Link as={Link} to="/logout">
-            <MdExitToApp />LogOut
+            <Nav.Link onClick ={handleOnLogoOut}as={Link} to="/logout">
+            <MdExitToApp  />LogOut
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
