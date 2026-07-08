@@ -7,9 +7,14 @@ const Dashboard =() => {
   return (
     <Container className='p-5'                                  >       
     <Row  className='bg-dark p-5 rounded'>
-    <Col md={6}>
-    
-    Dashboard
+    <Col >
+    <div>
+      form here
+    </div>
+    <hr/>
+    <div>
+      table here
+    </div>
     </Col>
     </Row>
     </Container>

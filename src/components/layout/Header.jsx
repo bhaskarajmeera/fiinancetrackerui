@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 import { MdExitToApp } from "react-icons/md";
 import { MdDashboardCustomize } from "react-icons/md";
 import { GrTransaction } from "react-icons/gr";
-  import { useUser } from "../../context/UserContext"; 
+  import { UserContext, useUser } from "../../context/UserContext"; 
+import { useContext } from "react";
 
 
 
@@ -17,7 +18,7 @@ const handleOnLogoOut= ()=>{
 
 }
 
-  
+  const { user } = useContext(UserContext);
  
 
   return (
