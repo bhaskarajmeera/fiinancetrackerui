@@ -8,11 +8,15 @@ import DefaultLayout  from './components/layout/DefaultLayout.jsx';
 import Dashboard from './pages/Dashboard.jsx';
 import Transaction from './pages/Transaction.jsx';
 import Auth from './auth/Auth.jsx';
+import { useEffect } from 'react';
+import { autologin } from './utils/users.js';
 
 
 
 function App() {
- 
+ useEffect (()=>{
+  /* autologin() */
+},[]);
   return (
   
       <div className="wrapper">

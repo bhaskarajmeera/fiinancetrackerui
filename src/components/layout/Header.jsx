@@ -7,7 +7,7 @@ import { GrTransaction } from "react-icons/gr";
  import { useUser } from "../../context/UserContext";
 
 
- const {setUser} = useUser() 
+ const {user, setUser} = useUser({}) 
 
 export const Header = () => {
 const handleOnLogoOut= ()=>{
@@ -29,13 +29,22 @@ const handleOnLogoOut= ()=>{
        {/*  <Navbar.Toggle aria-controls="main-navbar" /> */}
         <Navbar.Collapse id="main-navbar">
           <Nav className="ms-auto">
+            {
+              user._id ? (
+                <>
             <Nav.Link as={Link} to="/dashboard"> <MdDashboardCustomize /> Dashboard</Nav.Link>
             <Nav.Link as={Link} to="/transaction"> <GrTransaction />  Transaction</Nav.Link>
+            <Nav.Link onClick ={handleOnLogoOut}as={Link} to="/logout"></Nav.Link>
+                </>
+              ) :(
+                <>
             <Nav.Link as={Link} to="/login">Login</Nav.Link>
             <Nav.Link as={Link} to="/signup">Sign Up</Nav.Link>
-            <Nav.Link onClick ={handleOnLogoOut}as={Link} to="/logout">
+                </>
+              )
+            }
             <MdExitToApp  />LogOut
-            </Nav.Link>
+          
           </Nav>
         </Navbar.Collapse>
       </Container>
