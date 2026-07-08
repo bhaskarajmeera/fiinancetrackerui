@@ -4,16 +4,16 @@ import { Link } from "react-router-dom";
 import { MdExitToApp } from "react-icons/md";
 import { MdDashboardCustomize } from "react-icons/md";
 import { GrTransaction } from "react-icons/gr";
- import { useUser } from "../../context/UserContext";
+  import { useUser } from "../../context/UserContext"; 
 
 
- const {user, setUser} = useUser({}) 
+
 
 export const Header = () => {
 const handleOnLogoOut= ()=>{
   localStorage.removeItem("accessJWT")
   Alert("")
-  setUser({})
+   setUser({}) 
 
 }
 
@@ -30,7 +30,7 @@ const handleOnLogoOut= ()=>{
         <Navbar.Collapse id="main-navbar">
           <Nav className="ms-auto">
             {
-              user._id ? (
+              user?._id ? (
                 <>
             <Nav.Link as={Link} to="/dashboard"> <MdDashboardCustomize /> Dashboard</Nav.Link>
             <Nav.Link as={Link} to="/transaction"> <GrTransaction />  Transaction</Nav.Link>

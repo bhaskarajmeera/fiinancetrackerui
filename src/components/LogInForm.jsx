@@ -6,22 +6,26 @@ import useForm from './hooks/useForm.js';
 import { loginUser } from '../../helpers/axiosHelpers.js';
 import { toast } from "react-toastify";
 import { useUser } from '../context/UserContext.jsx';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 const initialState = {
   email: "",
   password: "",
 }
 
  export const LogInForm = () => {
+
+  const location = useLocation()
+  console.log(location)
   const navigate = useNavigate();
   const {user,setUser} = useUser();
  console.log(user,setUser);
   const {form, handleOnChange} = useForm(initialState);
+  const goTo = location?.state?.form?.pathname || "/dashboard";
   
   useEffect(()=>{
-    user?._id && navigate("/dashboard")
+    user?._id && navigate(goTo)
 
-  },[user?._id,navigate])
+  },[user?._id,navigate,goTo])
 
     const fields = [
       { label:"Email", placeholder:"john@gmail.com", required:true, type:"email", name:"email",value: form.email },

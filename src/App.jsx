@@ -10,13 +10,23 @@ import Transaction from './pages/Transaction.jsx';
 import Auth from './auth/Auth.jsx';
 import { useEffect } from 'react';
 import { autologin } from './utils/users.js';
+import { useUser } from './context/UserContext.jsx';
 
 
 
 function App() {
+
+  const {user,setUser}= useUser();
+
  useEffect (()=>{
-  /* autologin() */
-},[]);
+  !user._id && updateUser ()
+},[user._id]);
+
+const updateUser = async () =>{
+  const user = await autologin()
+  setUser(user)
+}
+
   return (
   
       <div className="wrapper">

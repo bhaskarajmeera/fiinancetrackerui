@@ -5,16 +5,14 @@ const getAccessJWT = () =>{
     return localStorage.getItem("accessJWT");
 }
 
-const apiProcessor = async({ method, url, data })=>{
+const apiProcessor = async({ method, url, data,headers })=>{
 
     try {
         const response = await axios({
             method,
             url, 
             data,
-            headers: {
-    "Content-Type": "application/json",
-  }, 
+            headers,
         });
         return response.data;  
     } catch (error) {
