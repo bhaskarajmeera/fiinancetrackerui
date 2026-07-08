@@ -1,4 +1,4 @@
-import { useState } from 'react'
+
 import { Button, Form } from 'react-bootstrap';
 import { CustomInput } from '../CustomInput';
 import useForm from '../hooks/useForm';
@@ -10,15 +10,16 @@ const initialState = {
     tdate: "",
   }
 export const TransactionForm = () => {
-const [form,setForm,handleOnChange] = useForm(initialState)
+const { form, setForm, handleOnChange } = useForm(initialState);
+
     const fields = [
-    { label:"Type", placeholder:"", required:true, type:"text", name:"type" },
     { label:"Title", placeholder:"salary", required:true, type:"title", name:"title", value: form.title },
     { label:"Amount", placeholder:"44", required:true, type:"number", name:"amount", value: form.amount  },
     { label:"Tdate",  required:true, type:"date", name:"tdate", value: form.tdate },
   ];
 
-   const handleOnSubmit = async (e) => {
+
+   const handleOnSubmit = (e) => {
     e.preventDefault();
     console.log(form)}
   return (
@@ -26,6 +27,15 @@ const [form,setForm,handleOnChange] = useForm(initialState)
       <h4 className="mb-3">Add new Transactions !</h4>
 
       <Form onSubmit={handleOnSubmit}>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Label>Transaction type</Form.Label>
+
+                <Form.Select name ="type" onChange={handleOnChange} required >
+                    <option value="">----select---</option>
+                    <option value="income">Income</option>
+                    <option value="expenses">Expenses</option>
+                 </Form.Select>
+              </Form.Group>
         {fields.map((input) => (
           <CustomInput key={input.name} {...input} onChange={handleOnChange} />
         ))}

@@ -19,8 +19,8 @@ function App() {
   const {user,setUser}= useUser();
 
  useEffect (()=>{
-  !user._id && updateUser ()
-},[user._id]);
+  !user?._id && updateUser ()
+},[user?._id]);
 
 const updateUser = async () =>{
   const user = await autologin()
@@ -34,11 +34,8 @@ const updateUser = async () =>{
           <Route path="/" element={<DefaultLayout/>}>
             <Route path="login" element={<Login/>}/>
             <Route path="signup" element={<SignUp/>}/>
-            <Route path="dashboard" element={
-             <Auth><Dashboard/></Auth>
-              }/>
-            <Route path="transaction" element={
-              <Auth> <Transaction/></Auth>}/>
+            <Route path="dashboard" element={<Auth><Dashboard/></Auth>}/>
+            <Route path="transaction" element={<Auth> <Transaction/></Auth>}/>
           </Route>
         </Routes>
 

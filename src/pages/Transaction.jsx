@@ -13,6 +13,7 @@ const Transaction =() => {
     <Row  className='bg-dark p-5 rounded'>
     <Col >
     <TransactionForm/>
+    <hr/>
     <TransactionTable/>
     </Col>
     </Row>
