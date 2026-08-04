@@ -58,3 +58,17 @@ export const getUser=() =>{
     }
     return apiProcessor(Obj);
 }
+
+/* transaction  */
+
+export const postNewTransacction = (data) =>{
+    const Obj ={
+        method:"post",
+        url:"http://localhost:8000/api/v1/transaction",
+        data,
+        headers: {
+            Authorization: getAccessJWT(),
+        },
+    }
+    return apiProcessor(Obj);
+}
