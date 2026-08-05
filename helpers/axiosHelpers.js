@@ -64,7 +64,7 @@ export const getUser=() =>{
 export const postNewTransacction = (data) =>{
     const Obj ={
         method:"post",
-        url:"http://localhost:8000/api/v1/transaction",
+        url: rootApiEp + "/transactions",
         data,
         headers: {
             Authorization: getAccessJWT(),
@@ -72,3 +72,15 @@ export const postNewTransacction = (data) =>{
     }
     return apiProcessor(Obj);
 }
+
+/* fetch transactions for specific user */
+export const fetchTransactions = () => {
+    const Obj = {
+        method: "get",
+        url: rootApiEp + "/transactions",
+        headers: {
+            Authorization: getAccessJWT(),
+        },
+    };
+    return apiProcessor(Obj);
+};

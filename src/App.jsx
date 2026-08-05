@@ -38,7 +38,6 @@ const updateUser = async () =>{
             <Route path="transaction" element={<Auth> <Transaction/></Auth>}/>
           </Route>
         </Routes>
-
         <ToastContainer />
       </div>
     

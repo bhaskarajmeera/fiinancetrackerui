@@ -1,6 +1,12 @@
 import Table from 'react-bootstrap/Table';
+import { useUser } from '../../context/UserContext';
 
 export const TransactionTable = () => {
+
+  const {transactions} = useUser();
+  const totalBalance = transactions.reduce((acc, transaction) => {
+    return transaction.type === "income" ? acc + transaction.amount : acc - transaction.amount;
+  }, 0);
   return (
     <Table striped bordered hover>
       <thead>
@@ -13,24 +19,34 @@ export const TransactionTable = () => {
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1</td>
-          <td>2023-01-01</td>
-          <td>salary</td>
-          <td>Credit</td>
-          <td>$5000</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>2023-01-02</td>
-          <td>groceries</td>
-          <td>Debit</td>
-          <td>$200</td>
-          
-        </tr>
+        {
+          transactions.lenght > 0 && transactions.map((transaction, index) => (
+            <tr key={transaction._id}>
+              <td>{index + 1}</td>
+              <td>{transaction.createdAt.slice(0, 10)}</td>
+              <td>{transaction.title}</td>
+              {/* for expense  or income conditions*/}
+              {transaction.type === "expense" && ( <>
+              <td></td>
+              <td>$${transaction.amount}</td>
+              </>)
+              }
+              {transaction.type === "income" && ( <>
+              
+              <td>$${transaction.amount}</td>
+              <td></td>
+              </>)
+              }
+              
+              
+            </tr>
+          ))
+        }
+        
+        
         <tr className = "font-weight-bold text-end">
           <td colSpan={3}>Total Balance</td>
-          <td colSpan={3}>$200</td>
+          <td colSpan={3}>${totalBalance.toFixed(2)}</td>
         </tr>
       </tbody>
     </Table>
