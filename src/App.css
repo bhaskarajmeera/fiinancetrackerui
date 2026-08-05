@@ -17,4 +17,17 @@ footer {
     margin-top: 80px;
     /* adjust as needed */
 }
+.table, tr, td, th {
+    background: transparent !important;
+    color: white !important;
+    border: 1px solid white !important;
+    padding: 10px;
+}
 
+.debit {
+    color: red !important;  
+}
+
+.credit {
+    color: green !important;
+}
