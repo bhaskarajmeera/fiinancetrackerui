@@ -6,6 +6,7 @@ import { TransactionForm } from '../components/layout/TransactionForm';
 import { TransactionTable } from '../components/layout/TransactionTable';
 import { useEffect } from 'react';
 import { useUser } from '../context/UserContext';
+import { CustomModal } from '../components/CustomModal.jsx';
 
 const Transaction =() => {
   const {getTransactions} = useUser();
@@ -16,7 +17,9 @@ const Transaction =() => {
     <Container className='p-5'                                  >       
     <Row  className='bg-dark p-5 rounded'>
     <Col >
+    <CustomModal>
     <TransactionForm/>
+    </CustomModal>
     <hr/>
     <TransactionTable/>
     </Col>

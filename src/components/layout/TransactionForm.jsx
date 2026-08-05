@@ -13,7 +13,7 @@ const initialState = {
   }
 export const TransactionForm = () => {
 const { form, setForm, handleOnChange } = useForm(initialState);
-const {getTransactions} = useUser();
+const {getTransactions, toggleModal} = useUser();
 
     const fields = [
     { label:"Title", placeholder:"salary", required:true, type:"title", name:"title", value: form.title },
@@ -30,7 +30,11 @@ const {getTransactions} = useUser();
     toast[status](message);
     if(status === "success") {
       setForm(initialState);
-      getTransactions(); // Refresh the transaction list
+      /* Refresh the transaction list  */
+        getTransactions(); 
+
+      /* close the modal */
+        toggleModal(false);
     }
   }
   return (

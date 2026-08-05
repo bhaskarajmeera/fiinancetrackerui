@@ -7,7 +7,10 @@ export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState({});
-  const[transactions, setTransactions] = useState([])
+  const[transactions, setTransactions] = useState([]);
+  const [show, setShow] = useState(false);
+
+  const toggleModal = (value) => setShow(value);
 
   const getTransactions = async () => {
 // call the API to get transactions for the user
@@ -21,7 +24,7 @@ export const UserProvider = ({ children }) => {
   };
 
   return (
-    <UserContext.Provider value={{ user, setUser, transactions, getTransactions }}>
+    <UserContext.Provider value={{ user, setUser, transactions, getTransactions, toggleModal, show }}>
       {children}
     </UserContext.Provider>
   );
