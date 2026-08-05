@@ -68,6 +68,7 @@ export const postNewTransacction = (data) =>{
         data,
         headers: {
             Authorization: getAccessJWT(),
+            "Content-Type": "application/json"
         },
     }
     return apiProcessor(Obj);
@@ -80,7 +81,23 @@ export const fetchTransactions = () => {
         url: rootApiEp + "/transactions",
         headers: {
             Authorization: getAccessJWT(),
+            "Content-Type": "application/json"
         },
     };
     return apiProcessor(Obj);
+};
+
+/* delete multiple transactions */
+export const deleteTransactions = (ids) => {
+  const Obj = {
+    method: "delete",
+    url: rootApiEp + "/transactions",
+    data: { ids},
+    headers: {
+      Authorization: getAccessJWT(),
+      "Content-Type": "application/json",
+    },
+  };
+
+  return apiProcessor(Obj);
 };

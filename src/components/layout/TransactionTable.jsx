@@ -1,6 +1,6 @@
 import Table from 'react-bootstrap/Table';
 import { useUser } from '../../context/UserContext';
-import { Button, FormControl } from 'react-bootstrap';
+import { Button, ButtonGroup, Form, FormControl } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
 import { FaArrowUp, FaArrowDown } from "react-icons/fa"
 
@@ -8,6 +8,7 @@ export const TransactionTable = () => {
   const [displayTransactions, setDisplayTransactions] = useState([]);
 
   const { transactions, toggleModal } = useUser();
+  const [idsToDelete, setIdsToDelete] = useState([]);
 
   useEffect(() => {
     setDisplayTransactions(transactions);
@@ -27,6 +28,24 @@ export const TransactionTable = () => {
     setDisplayTransactions(filteredTransactions);
   };
 
+  const handleOnSelect = (e) => {
+    const { value, checked } = e.target;
+    console.log("value", value, "checked", checked);
+    // Handle select all logic
+    if (value === "all") {
+      checked ? setIdsToDelete(displayTransactions.map(transaction => transaction._id)) : setIdsToDelete([]);
+      return;
+    }
+      // Handle individual transaction selection logic
+    if(checked) {
+      setIdsToDelete([...idsToDelete, value]);
+    }else {
+    
+      setIdsToDelete(idsToDelete.filter(id => id !== value));
+    }
+    return;
+  };
+console.log("idsToDelete", idsToDelete);
   return (
     <>
       <div className="d-flex justify-content-between align-items-center pt-3 mb-3">
@@ -44,10 +63,14 @@ export const TransactionTable = () => {
           </Button>
         </div>
       </div>
+      <div>
+        <Form.Check type="checkbox" label="Select All" value="all" onChange={handleOnSelect} checked={idsToDelete.length === displayTransactions.length} />
+      </div>
 
       <Table striped hover>
         <thead>
           <tr>
+            
             <th>#</th>
             <th>Date</th>
             <th>Title</th>
@@ -60,8 +83,9 @@ export const TransactionTable = () => {
           {displayTransactions.length > 0 &&
             displayTransactions.map((transaction, index) => (
               <tr key={transaction._id}>
+                
                 <td>{index + 1}</td>
-                <td>{transaction.createdAt.slice(0, 10)}</td>
+                <td><Form.Check type="checkbox"  label={transaction.createdAt.slice(0, 10)} value={transaction._id} onChange={handleOnSelect} checked={idsToDelete.includes(transaction._id)} /></td>
                 <td>{transaction.title}</td>
 
                 {transaction.type === "expense" && (
@@ -91,6 +115,12 @@ export const TransactionTable = () => {
           </tr>
         </tbody>
       </Table>
+      {idsToDelete.length > 0 && (
+        <div className="alert alert-danger">
+          {idsToDelete.length} transaction(s) selected for deletion.
+        </div>
+      )}
+      
     </>
   );
 };
