@@ -14,7 +14,7 @@ export const UserProvider = ({ children }) => {
     try { 
       const {status, transactions} = await fetchTransactions();
   
-  
+      status === "success" && setTransactions(transactions);
     } catch (error) {
       console.error("Error fetching transactions:", error);
     }

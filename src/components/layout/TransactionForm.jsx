@@ -4,6 +4,7 @@ import { CustomInput } from '../CustomInput';
 import useForm from '../hooks/useForm';
 import { postNewTransacction } from '../../../helpers/axiosHelpers';
 import { toast } from 'react-toastify';
+import { useUser } from '../../context/UserContext';
 const initialState = {
     type: "",
     title: "",
@@ -12,6 +13,7 @@ const initialState = {
   }
 export const TransactionForm = () => {
 const { form, setForm, handleOnChange } = useForm(initialState);
+const {getTransactions} = useUser();
 
     const fields = [
     { label:"Title", placeholder:"salary", required:true, type:"title", name:"title", value: form.title },
@@ -27,7 +29,10 @@ const { form, setForm, handleOnChange } = useForm(initialState);
     toast.promise(pending,{pending:"Please wait...",});
     const {status, message} = await pending;
     toast[status](message);
-    status === "success" && setForm(initialState);
+    if(status === "success") {
+      setForm(initialState);
+      getTransactions(); // Refresh the transaction list
+    }
   }
   return (
     <div className='p-4 border rounded'>
