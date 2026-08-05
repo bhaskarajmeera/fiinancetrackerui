@@ -1,13 +1,15 @@
 import Table from 'react-bootstrap/Table';
 import { useUser } from '../../context/UserContext';
-import { Button, ButtonGroup, Form, FormControl } from 'react-bootstrap';
+import { Button, Form, FormControl } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
 import { FaArrowUp, FaArrowDown } from "react-icons/fa"
+import { deleteTransactions } from '../../../helpers/axiosHelpers';
+import { toast } from 'react-toastify';
 
 export const TransactionTable = () => {
   const [displayTransactions, setDisplayTransactions] = useState([]);
 
-  const { transactions, toggleModal } = useUser();
+  const { transactions, toggleModal, getTransactions } = useUser();
   const [idsToDelete, setIdsToDelete] = useState([]);
 
   useEffect(() => {
@@ -30,7 +32,7 @@ export const TransactionTable = () => {
 
   const handleOnSelect = (e) => {
     const { value, checked } = e.target;
-    console.log("value", value, "checked", checked);
+    
     // Handle select all logic
     if (value === "all") {
       checked ? setIdsToDelete(displayTransactions.map(transaction => transaction._id)) : setIdsToDelete([]);
@@ -45,7 +47,19 @@ export const TransactionTable = () => {
     }
     return;
   };
-console.log("idsToDelete", idsToDelete);
+
+  const handleDelete = async () => {
+    if (confirm(`Are you sure you want to delete ${idsToDelete.length} transaction(s)?`)) 
+    {
+      // Call the API to delete transactions with ids in idsToDelete
+      const {status,message} = await deleteTransactions(idsToDelete );  
+      // After successful deletion, update the transactions state in context
+      toast[status](message);
+      status === "success" && getTransactions() && setIdsToDelete([]);
+    }
+    
+    
+  }
   return (
     <>
       <div className="d-flex justify-content-between align-items-center pt-3 mb-3">
@@ -116,9 +130,9 @@ console.log("idsToDelete", idsToDelete);
         </tbody>
       </Table>
       {idsToDelete.length > 0 && (
-        <div className="alert alert-danger">
-          {idsToDelete.length} transaction(s) selected for deletion.
-        </div>
+        <Button className="d-grid" onClick={handleDelete}>
+          Delete {idsToDelete.length} Transaction(s)
+        </Button> 
       )}
       
     </>
