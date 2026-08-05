@@ -1,4 +1,4 @@
-import React from 'react'
+
 import { Footer } from '../layout/Footer.jsx'
 import { Header } from '../layout/Header.jsx'
 import { Outlet } from "react-router-dom"

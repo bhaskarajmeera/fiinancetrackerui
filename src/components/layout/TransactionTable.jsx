@@ -47,7 +47,6 @@ export const TransactionTable = () => {
     }
     return;
   };
-
   const handleDelete = async () => {
     if (confirm(`Are you sure you want to delete ${idsToDelete.length} transaction(s)?`)) 
     {
@@ -57,7 +56,7 @@ export const TransactionTable = () => {
       toast[status](message);
       status === "success" && getTransactions() && setIdsToDelete([]);
     }
-    
+  
     
   }
   return (

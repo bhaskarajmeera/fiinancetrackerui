@@ -14,13 +14,8 @@ export const Header = () => {
 const handleOnLogoOut= ()=>{
   localStorage.removeItem("accessJWT")
   Alert("")
-   setUser({}) 
-
-}
-
+   setUser({}) }
   const { user } = useContext(UserContext);
- 
-
   return (
     <Navbar bg="dark" variant="dark" expand="md" sticky="top">
     <Container fluid>

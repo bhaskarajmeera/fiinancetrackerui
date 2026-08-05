@@ -25,10 +25,6 @@ const Transaction =() => {
     </Col>
     </Row>
     </Container>
-      
-         
-  
-    
   )
 }
 export default Transaction;

@@ -5,7 +5,7 @@ import Col from 'react-bootstrap/Col'
 
 const Dashboard =() => {
   return (
-    <Container className='p-5'                                  >       
+    <Container className='p-5'>       
     <Row  className='bg-dark p-5 rounded'>
     <Col >
     <div>
@@ -18,10 +18,6 @@ const Dashboard =() => {
     </Col>
     </Row>
     </Container>
-      
-         
-  
-    
   )
 }
 export default Dashboard;

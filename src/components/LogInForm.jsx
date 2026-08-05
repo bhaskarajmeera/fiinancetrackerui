@@ -15,10 +15,10 @@ const initialState = {
  export const LogInForm = () => {
 
   const location = useLocation()
-  console.log(location)
+  
   const navigate = useNavigate();
   const {user,setUser} = useUser();
- console.log(user,setUser);
+
   const {form, handleOnChange} = useForm(initialState);
   const goTo = location?.state?.form?.pathname || "/dashboard";
   
@@ -36,7 +36,7 @@ const initialState = {
         e.preventDefault();
       const { status,message,user,accessJWT } = await loginUser(form);
       toast[status](message)
-      console.log(user,accessJWT);
+      
       setUser(user);
       localStorage.setItem("accessJWT",accessJWT)
     

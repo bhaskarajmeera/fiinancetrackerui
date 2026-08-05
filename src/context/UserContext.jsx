@@ -9,7 +9,6 @@ export const UserProvider = ({ children }) => {
   const [user, setUser] = useState({});
   const[transactions, setTransactions] = useState([]);
   const [show, setShow] = useState(false);
-
   const toggleModal = (value) => setShow(value);
 
   const getTransactions = async () => {

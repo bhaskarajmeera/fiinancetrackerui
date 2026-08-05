@@ -18,10 +18,6 @@ const SignUp =() => {
     </Col>
     </Row>
     </Container>
-      
-         
-  
-    
   )
 }
 export default SignUp;

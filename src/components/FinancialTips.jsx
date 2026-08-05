@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { GiTakeMyMoney } from "react-icons/gi";
 const financialTps=[
   {
@@ -48,12 +48,12 @@ const financialTps=[
   },
   {
     "tip": "Track your net worth regularly.",
-    "quote": "What you don’t track, you can’t improve.",
+    "quote": "What you dont track, you cant improve.",
     "expert": "Unknown"
   }
 ]
 
- const FinancialTips = () => {
+const FinancialTips = () => {
 const [showQuote,setShowQuote]= useState(financialTps[0]);
 const {tip,quote,expert}=showQuote;
 

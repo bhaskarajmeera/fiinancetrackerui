@@ -12,23 +12,19 @@ import { useEffect } from 'react';
 import { autologin } from './utils/users.js';
 import { useUser } from './context/UserContext.jsx';
 
-
-
 function App() {
 
   const {user,setUser}= useUser();
 
- useEffect (()=>{
-  !user?._id && updateUser ()
-},[user?._id]);
+ useEffect (()=>{!user?._id && updateUser ()},[user?._id]);
 
-const updateUser = async () =>{
-  const user = await autologin()
-  setUser(user)
-}
+const updateUser = async () =>
+  {
+const user = await autologin()
+setUser(user)
+  }
 
   return (
-  
       <div className="wrapper">
         <Routes>
           <Route path="/" element={<DefaultLayout/>}>
