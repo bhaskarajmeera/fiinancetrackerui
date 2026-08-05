@@ -1,18 +1,33 @@
 import Table from 'react-bootstrap/Table';
 import { useUser } from '../../context/UserContext';
 import { Button, FormControl } from 'react-bootstrap';
+import { useEffect, useState } from 'react';
 
 export const TransactionTable = () => {
+  const {displayTransactions,setDisplayTransactions} = useState([]);
 
   const {transactions} = useUser();
+  useEffect(()=>{
+    setDisplayTransactions(transactions);
+  },[transactions])
+  
   const totalBalance = transactions.reduce((acc, transaction) => {
     return transaction.type === "income" ? acc + transaction.amount : acc - transaction.amount;
   }, 0);
+
+  const handleSearch = (e) => {
+    const searchTerm = e.target.value.toLowerCase();
+    const filteredTransactions = transactions.filter((transaction) =>
+      transaction.title.toLowerCase().includes(searchTerm)
+    );
+    setDisplayTransactions(filteredTransactions);
+  };
+
   return (
     <>
     <div className='d-flex justify-content-between align-items-center pt-3 mb-3'>
       <div>{transactions.length} transactions found </div>
-      <div> <FormControl type ="text"/></div>
+      <div> <FormControl type ="text" placeholder="Search transactions..." onChange={handleSearch}/></div>
       <div><Button className="primary">Add New Transaction</Button></div>
     </div>
     <Table striped  hover>
@@ -27,7 +42,7 @@ export const TransactionTable = () => {
       </thead>
       <tbody>
         {
-          transactions.lenght > 0 && transactions.map((transaction, index) => (
+          displayTransactions.length > 0 && displayTransactions.map((transaction, index) => (
             <tr key={transaction._id}>
               <td>{index + 1}</td>
               <td>{transaction.createdAt.slice(0, 10)}</td>

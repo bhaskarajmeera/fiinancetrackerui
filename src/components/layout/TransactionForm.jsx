@@ -21,10 +21,9 @@ const {getTransactions} = useUser();
     { label:"Transaction Date",  required:true, type:"date", name:"tDate", value: form.tDate },
   ];
 
-
    const handleOnSubmit = async(e) => {
     e.preventDefault();
-    console.log(form)
+    
     const pending = await postNewTransacction(form);
     toast.promise(pending,{pending:"Please wait...",});
     const {status, message} = await pending;
